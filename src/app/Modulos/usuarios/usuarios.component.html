@@ -1,0 +1,75 @@
+<h1>Usuarios</h1>
+<button class="btn btn-primary" (click)="mostrar(1)"> Insertar Usuario </button> <br><br>
+
+<div id="formulario" *ngIf="verf==true">
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre" [(ngModel)]="user.Nombre">
+            <span style="color: red;" *ngIf="validnombre==false"> Insertar Nombre </span>
+        </div>
+        <div class="col-lg-6">
+            <input type="email" id="correo" class="form-control" placeholder="Correo electrónico" [(ngModel)]="user.Email">
+            <span style="color: red;" *ngIf="validcorreo==false"> Insertar Correo </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="password" id="clave" class="form-control" placeholder="Clave" [(ngModel)]="user.Clave">
+            <span style="color: red;" *ngIf="validclave==false"> Insertar Clave </span>
+        </div>
+        <div class="col-lg-6">
+            <select id="tipo" class="form-control form-select" [(ngModel)]="user.Tipo_Usuario">
+                <option value="" disabled selected>Seleccione el tipo de usuario</option>
+                <option value="Administrador" label="Administrador"> Administrador </option>
+                <option value="General" label="General"> General </option>
+            </select><br>
+            <span style="color: red;" *ngIf="validtipo==false"> Insertar tipo </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="number" id="celular" class="form-control" placeholder="Celular" [(ngModel)]="user.Celular">
+            <span style="color: red;" *ngIf="validcelular==false"> Insertar celular </span>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="text" id="direccion" class="form-control" placeholder="Dirección" [(ngModel)]="user.Direccion">
+            <span style="color: red;" *ngIf="validdireccion==false"> Insertar Dirección </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+            <button class="btn btn-primary" (click)="ingresar()"> Guardar </button>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-secondary" (click)="mostrar(0)"> Cancelar </button>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+<br>
+<div class="table-responsive">
+    <table class="table table-success table-striped" border="1">
+      <tr>
+        <th> Nombre </th>
+        <th> Tipo de usuario </th>
+        <th> Correo </th>
+        <th> Acciones </th>
+      </tr>
+      <!-- Mostrar usuarios-->
+      <tr *ngFor="let item of usuario">
+        <td> {{item.Nombre}} </td>
+        <td> {{item.Tipo_Usuario}} </td>
+        <td> {{item.Email}} </td>
+        <td>
+            <a> <span class="fas fa-edit editar" title="Editar"></span> </a>
+            
+            <a (click)="pregunta(item.ID_Usuario, item.Nombre)"> <span class="fas fa-trash-alt eliminar" title="Eliminar"></span> </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  

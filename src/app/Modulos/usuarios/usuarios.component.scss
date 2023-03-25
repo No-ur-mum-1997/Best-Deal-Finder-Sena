@@ -1,0 +1,21 @@
+input, select, button{
+    margin-top: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: grey;
+}
+input, select{
+    width: 500px;
+}
+button{
+    margin-bottom: 10px;
+}
+
+.editar{
+    color: blue;
+    cursor: pointer;
+}
+.eliminar{
+    color: red;
+    cursor: pointer;
+}
