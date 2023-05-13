@@ -7,11 +7,13 @@ import { LoginComponent } from './Modulos/login/login.component';
 import { UsuariosComponent } from './Modulos/usuarios/usuarios.component';
 import { ProductosComponent } from './Modulos/productos/productos.component';
 import { VentasComponent } from './Modulos/ventas/ventas.component';
+import { ValidaruserGuard } from './guards/validaruser.guard';
 
 
 const routes: Routes = [
 {
 path: '', component: PrincipalComponent,
+canActivate: [ValidaruserGuard],
  children: [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'usuarios', component: UsuariosComponent },
