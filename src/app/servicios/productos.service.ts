@@ -13,6 +13,7 @@ export class ProductosService {
   consultar () {
     return this.http.get(`${this.url}consulta.php`);
   }
+  /*
   insertar(articulo:any){
     return this.http.post(`${this.url}insertar.php`, JSON.stringify(articulo));
   }
@@ -23,4 +24,5 @@ export class ProductosService {
     return this.http.post(`${this.url}editar.php`, JSON.stringify(datos));
   }
   
+}*/
 }
