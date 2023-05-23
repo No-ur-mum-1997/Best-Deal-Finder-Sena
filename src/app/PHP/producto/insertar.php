@@ -8,9 +8,8 @@ $params = json_decode($json);
 
 require("../conexion.php");
 
-//$ins = "insert into usuario (Tipo_Usuario, Nombre, Email, Clave, Celular, Direccion, Historial, Fo_Ciudad) values('preuba', 'prueba', 'prueba', sha1 ('12345'), '123', 'invitado', 'prueba', 'prueba')";
 
-$ins= "insert into productos (Nombre, Cantidad, Valor_Venta) values ('$params->Nombre', '$params->Cantidad', '$params->Valor_Venta')";
+$ins= "INSERT into producto (codigo_producto, nombre_producto, valor_producto, stock_producto, fo_categoria) values ('$params->codigo_producto', '$params->nombre_producto', $params->valor_producto, $params->stock_producto , $params->fo_categoria)";
 
 mysqli_query($conexion, $ins) or die ('No inserto');
 

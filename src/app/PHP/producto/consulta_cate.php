@@ -4,8 +4,8 @@ header ("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, A
 
 require("../conexion.php");
 
-$con = "SELECT p.*, c.nombre_categoria AS ncategoria FROM producto p INNER JOIN categoria c ON p.fo_categoria = c.id_categoria ORDER BY p.nombre_producto";
-$res = mysqli_query($conexion, $con) or die ('No consultó productos');
+$con = "SELECT * FROM categoria ORDER BY nombre_categoria";
+$res = mysqli_query($conexion, $con) or die ('No consultó categoria');
 
 $vec=[];
 while ($reg=mysqli_fetch_array($res))
