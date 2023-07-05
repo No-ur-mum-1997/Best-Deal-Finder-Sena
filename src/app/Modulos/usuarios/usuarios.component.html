@@ -1,7 +1,7 @@
 <h1>Usuarios</h1>
-<button class="btn btn-primary" (click)="mostrar(1)"> Insertar Usuario </button> <br><br>
+<button class="btn btn-primary" (click)="mostrar(0)"> Insertar Usuario </button> <br><br>
 
-<div id="formulario" *ngIf="verf==true">
+<div id="formulario" *ngIf="mostrarFormulario==true">
     <div class="row">
         <div class="col-lg-6">
             <input type="text" id="nombre" class="form-control" placeholder="Nombre" [(ngModel)]="user.Nombre">
@@ -45,7 +45,7 @@
             <button *ngIf="beditar==true" class="btn btn-primary" (click)="editar()" > Editar </button>
         </div>
         <div class="col-lg-3">
-            <button class="btn btn-secondary" (click)="mostrar(0)"> Cancelar </button>
+            <button class="btn btn-secondary" (click)="cancelar()"> Cancelar </button>
         </div>
         <div class="col-lg-3"></div>
     </div>
@@ -67,10 +67,9 @@
         <td> {{item.Email}} </td>
         <td>
             <a (click)="cargardatos(item, item.ID_Usuario)" > <span class="fas fa-edit editar" title="Editar"></span> </a>
-            
+
             <a (click)="pregunta(item.ID_Usuario, item.Nombre)"> <span class="fas fa-trash-alt eliminar" title="Eliminar"></span> </a>
         </td>
       </tr>
     </table>
   </div>
-  

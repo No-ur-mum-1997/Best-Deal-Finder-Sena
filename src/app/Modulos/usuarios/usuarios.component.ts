@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class UsuariosComponent implements OnInit {
 
   //Variables globales
-  verf = false;
+  mostrarFormulario = false;
   usuario: any;
   iduser:any;
   user = {
@@ -30,7 +30,7 @@ validcelular = true;
 validdireccion = true;
 beditar = false;
 
-constructor(private suser: UsuarioService ){ }
+constructor(private suser: UsuarioService){ }
 
 ngOnInit(): void {
   this.consulta();
@@ -42,15 +42,20 @@ ngOnInit(): void {
 mostrar(dato:any) {
   switch(dato){
     case 0:
-      this.verf = false;
+      this.mostrarFormulario = true;
       this.beditar = false;
       this.iduser = "";
       this.limpiar();
       break;
-      case 1:
-        this.verf = true;
+    case 1:
+        this.beditar = true;
+        this.mostrarFormulario = true;
         break;
   }
+}
+
+cancelar() {
+  this.mostrarFormulario = false;
 }
 
 //Limpiar
@@ -119,7 +124,7 @@ ingresar() {
     } );
     this.mostrar(0);
     this.limpiar();
-  
+
   }
 
 }
@@ -166,20 +171,17 @@ cargardatos(datos:any, id:number){
   this.beditar=true;
 }
 
-editar (){
+editar () {
   this.validar();
 
   if (this.validtipo==true && this.validnombre==true && this.validcorreo==true && this.validclave==true && this.validcelular==true && this.validdireccion==true ) {
     this.suser.edit(this.user, this.iduser).subscribe((datos:any) =>{
-
-      if (datos['resultado']=='OK') {
+      if (datos && datos.resultado=='Ok') {
         //alert(datos['mensaje']);
         this.consulta();
       }
-    } );
+    });
     this.mostrar(0);
+    }
   }
-
-}
-
 }

@@ -1,7 +1,7 @@
 <h1>Productos</h1>
-<button class="btn btn-primary" (click)="mostrar(1)"> Insertar Producto </button> <br><br>
+<button class="btn btn-primary" (click)="mostrar(0)"> Insertar Producto </button> <br><br>
 
-<div id="formulario" *ngIf="verf==true">
+<div id="formulario" *ngIf="mostrarFormulario==true">
     <div class="row">
         <div class="col-lg-6">
             <input type="text" id="codigo_producto" class="form-control" placeholder="Código" [(ngModel)]="product.codigo_producto">
@@ -11,6 +11,10 @@
             <input type="text" id="nombre_producto" class="form-control" placeholder="Nombre" [(ngModel)]="product.nombre_producto">
             <span style="color: red;" *ngIf="validnombre==false"> Insertar Nombre </span>
         </div>
+        <div class="col-lg-6">
+          <input type="text" id="link_producto" class="form-control" placeholder="Link tienda" [(ngModel)]="product.link_producto">
+          <span style="color: red;" *ngIf="validlink==false"> Insertar link tienda </span>
+      </div>
         <div class="col-lg-6">
             <input type="number" id="valor_producto" class="form-control" placeholder="Valor del producto" [(ngModel)]="product.valor_producto">
             <span style="color: red;" *ngIf="validvalor==false"> Insertar valor del prodcuto </span>
@@ -24,7 +28,7 @@
         <div class="col-lg-6">
             <select id="fo_categoria" class="form-control form-select" [(ngModel)]="product.fo_categoria">
             <option value="0" label="Seleccionar categoría"> Seleccionar categoría </option>
-            <option value="" *ngFor="let itemc of categoria" value="{{itemc.id_cate}}" label="{{itemc.nombre_categoria}}"> {{itemc.nombre_categoria}} </option>
+            <option value="" *ngFor="let itemc of categoria" value="{{itemc.id_categoria}}" label="{{itemc.nombre_categoria}}"> {{itemc.nombre_categoria}} </option>
             </select>
             <span style="color: red;" *ngIf="validcate==false"> Seleccione una categoría </span>
         </div>
@@ -33,10 +37,10 @@
         <div class="col-lg-3"></div>
         <div class="col-lg-3">
             <button *ngIf="beditar==false" class="btn btn-primary" (click)="ingresar()" > Guardar </button>
-           <!-- <button *ngIf="beditar==true" class="btn btn-primary" (click)="editar()" > Editar </button> -->
+            <button *ngIf="beditar==true" class="btn btn-primary" (click)="editar()" > Editar </button>
         </div>
         <div class="col-lg-3">
-            <button class="btn btn-secondary" (click)="mostrar(0)"> Cancelar </button>
+            <button class="btn btn-secondary" (click)="cancelar()"> Cancelar </button>
         </div>
         <div class="col-lg-3"></div>
     </div>
@@ -50,6 +54,7 @@
         <th> Código </th>
         <th> Nombre </th>
         <th> Categoría </th>
+        <th> Link tienda </th>
         <th> Valor </th>
         <th> Stock </th>
         <th> Acciones </th>
@@ -59,14 +64,16 @@
         <td> {{item.codigo_producto}} </td>
         <td> {{item.nombre_producto}} </td>
         <td> {{item.ncategoria}} </td>
+        <td>
+          <a [href]="item.link_producto" target="_blank" rel="noopener noreferrer">{{item.link_producto}}</a>
+        </td>
         <td> $ {{item.valor_producto}} </td>
         <td> {{item.stock_producto}} </td>
         <td>
-            <a> <span class="fas fa-edit editar" title="Editar"></span> </a>
-            
-            <a> <span class="fas fa-trash-alt eliminar" title="Eliminar"></span> </a>
+            <a (click)="mostrarform(item)"><span class="fas fa-edit editar" title="Editar"></span></a>
+            <a (click)="pregunta(item)"> <span class="fas fa-trash-alt eliminar" title="Eliminar"></span> </a>
         </td>
       </tr>
     </table>
   </div>
-  
+

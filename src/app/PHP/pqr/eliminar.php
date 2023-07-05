@@ -4,8 +4,9 @@ header ("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, A
 
 require("../conexion.php");
 
-$del = "DELETE from producto WHERE id_producto=".$_GET['id'];
-mysqli_query($conexion, $del) or die ("No eliminó");
+$del = "DELETE * from ventas WHERE ID_Ventas=".$_GET('id');
+mysqli_query($conexion,$del) or die ("No eliminó");
+
 
 class Result {}
 

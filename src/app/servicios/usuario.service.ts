@@ -19,8 +19,9 @@ export class UsuarioService {
   eliminar(id:number) {
     return this.http.get(`${this.url}eliminar.php?id=${id}`);
   }
+
   edit(datos:any, id:number){
     return this.http.post(`${this.url}editar.php?id=${id}`, JSON.stringify(datos));
   }
-  
+
 }
